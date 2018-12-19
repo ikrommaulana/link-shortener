@@ -26,6 +26,19 @@ Class Mshort extends CI_Model {
 	
 	function visitor_detail($data) {
          $query = $this->db->insert('visitor',$data);  
+    }
+
+    function get_url(){
+    	$query = $this->db->get('url');
+    	return $query;
+    } 
+
+    function get_visitor(){
+    	$this->db->select('*');
+		$this->db->from('visitor');
+		$this->db->join('url', 'url.id = visitor.id_url');
+		$query = $this->db->get();
+    	return $query;
     } 
 	
 	

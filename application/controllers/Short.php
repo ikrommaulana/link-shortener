@@ -72,8 +72,8 @@ class Short extends CI_Controller {
 			if($hitcount > 0){
 			   	$this->mshort->hit_counter($res->id);
 
-				//$ipaddress = $this->get_client_ip(); //jika diaktifkan di localhost maka akan error
 				$ipaddress = '202.147.193.3';
+				//$ipaddress = $this->get_client_ip(); //hapus comment untuk mengaktifkan lacak ip secara online
 				$details = json_decode(file_get_contents('http://ipinfo.io/'.$ipaddress.'/json'));
 				//$details = var_export(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$ipaddress)));
 				$data['id_url']	= $res->id; 
@@ -110,6 +110,19 @@ class Short extends CI_Controller {
 	        $ipaddress = 'UNKNOWN';
 	    return $ipaddress;
 	}
+
+
+	function api_get() {
+        $status = $this->get('status');
+        if ($status == '') {
+			$this->db->where('status', 0);
+            $area = $this->db->get('url')->result();
+        } else {
+            $this->db->where('status', 1);
+            $area = $this->db->get('url')->result();
+        }
+        $this->response($area, 200);
+    }
 
 
 }
