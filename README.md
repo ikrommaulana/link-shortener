@@ -1,7 +1,7 @@
 # link-shortener
 # membuat link shortener seperti bit.ly
-# untuk mengakses api menggunakan link /api?url={url}&api_auth_key={key}
-
+# untuk mengakses api untuk mengambil semua data short url menggunakan link /api?get=url&api_auth_key={key}
+# untuk mengakses api untuk membuat short url menggunakan link  /api?url={url}&api_auth_key={key}
 
 
 
